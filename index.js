@@ -1,76 +1,14 @@
-const process = require('process');
+const path = require('path');
+const args = process.argv.slice(2);
+const {Plop, run} = require('plop');
+const argv = require('minimist')(args);
 
-module.exports = function (plop) {
-    // react seam app generator
-    plop.setGenerator('createapp', {
-        description: 'create app generator',
-        prompts:
-            [
-                {
-                    type: 'input',
-                    name: 'projectName',
-                    message: 'please enter app name'
-                },
-                {
-                    type: 'input',
-                    name: 'projectHtmlTitle',
-                    message: 'please enter app html title'
-                },
-                {
-                    type: 'input',
-                    name: 'projectDescribtion',
-                    message: 'please enter app describtions'
-                },
-                {
-                    type: 'confirm',
-                    name: 'wantGitRepo',
-                    message: 'do you want to create git repository?',
-                    default:false
-                },
-                {
-                    type: 'input',
-                    name: 'projectGitUrl',
-                    message: 'please enter app Git Url'
-                },
-                {
-                    type: 'input',
-                    name: 'projectLicense',
-                    message: 'please enter app license'
-                },
-                {
-                    type: 'input',
-                    name: 'projectDefaultPort',
-                    message: 'please enter app default server port'
-                }
-        ],
-        actions: data => {
-                const actions = [
-                    {
-                        type: 'add',
-                        path: `app/index.html`,
-                        templateFile: 'templates/index.html.hbs'
-                    },
-                    {
-                        type: 'add',
-                        path: `server/port.js`,
-                        templateFile: 'templates/port.js.hbs'
-                    },
-                    {
-                        type: 'add',
-                        path: `package.json`,
-                        templateFile: 'templates/package.json.hbs'
-                    },
-                    {
-                        type: 'addMany',
-                        destination: process.cwd(),
-                        base:'templates/sources',
-                        globOptions:{
-                            dot:true
-                        },
-                        templateFiles: 'templates/sources/**'
-                    },
-                ]
-                return actions;
-            }
-    });
-};
+Plop.launch({
+    cwd: argv.cwd,
+    // In order for `plop` to always pick up the `plopfile.js` despite the CWD, you must use `__dirname`
+    configPath: path.join(__dirname, '/generators/plopfile.js'),
+    require: argv.require,
+    completion: argv.completion
+// This will merge the `plop` argv and the generator argv.
+// This means that you don't need to use `--` anymore
+}, run);

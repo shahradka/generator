@@ -1,18 +1,18 @@
 {
   "name": "@ReactSeam/app-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate":"plop --plopfile index.js"
+    "plop":"plop"
   },
   "publishConfig": {
     "registry": "http://192.168.100.192:4873"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "kashani.sh",
+  "license": "MIT",
   "dependencies": {
     "plop": "^2.7.1"
   }
