@@ -1,7 +1,8 @@
 const process = require('process');
-
+const path = require("path");
 module.exports = function (plop) {
     // react seam app generator
+    const processDir = process.cwd();
     plop.setGenerator('createapp', {
         description: 'create app generator',
         prompts:
@@ -9,23 +10,31 @@ module.exports = function (plop) {
                 {
                     type: 'input',
                     name: 'projectName',
-                    message: 'please enter app name'
+                    message: 'Please enter app name'
                 },
                 {
                     type: 'input',
                     name: 'projectHtmlTitle',
-                    message: 'please enter app html title'
+                    message: 'Please enter app html title'
                 },
                 {
                     type: 'input',
                     name: 'projectDescribtion',
-                    message: 'please enter app describtions'
+                    message: 'Please enter app describtions'
                 },
                 {
                     type: 'confirm',
                     name: 'wantGitRepo',
-                    message: 'do you want to create git repository?',
+                    message: 'Do you want to create git repository?',
                     default:false
+                },
+                {
+                    type: 'input',
+                    name: 'gitRepoUrl',
+                    message: 'Please enter git repository url:',
+                    when:(ans)=>{
+                        return ans.wantGitRepo;
+                    }
                 },
                 {
                     type: 'input',
@@ -47,22 +56,22 @@ module.exports = function (plop) {
                 const actions = [
                     {
                         type: 'add',
-                        path: `app/index.html`,
+                        path: path.join(processDir,`app/index.html`),
                         templateFile: 'templates/index.html.hbs'
                     },
                     {
                         type: 'add',
-                        path: `server/port.js`,
+                        path: path.join(processDir,`server/port.js`),
                         templateFile: 'templates/port.js.hbs'
                     },
                     {
                         type: 'add',
-                        path: `package.json`,
+                        path: path.join(processDir,`package.json`),
                         templateFile: 'templates/package.json.hbs'
                     },
                     {
                         type: 'addMany',
-                        destination: process.cwd(),
+                        destination: processDir,
                         base:'templates/sources',
                         globOptions:{
                             dot:true
