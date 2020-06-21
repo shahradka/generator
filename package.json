@@ -1,5 +1,5 @@
 {
-  "name": "generator",
+  "name": "@ReactSeam/app-generator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,10 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate":"plop --plopfile index.js"
   },
+  "publishConfig": {
+    "registry": "http://192.168.100.192:4873"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "plop": "^2.7.1"
   }
 }
