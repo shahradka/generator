@@ -4,8 +4,7 @@ module.exports = function (plop) {
     // react seam app generator
     plop.setGenerator('createapp', {
         description: 'create app generator',
-        prompts: data =>{
-            const prompts =
+        prompts:
             [
                 {
                     type: 'input',
@@ -27,19 +26,12 @@ module.exports = function (plop) {
                     name: 'wantGitRepo',
                     message: 'do you want to create git repository?',
                     default:false
-                }
-            ],
-            if(data.wantGitRepo)
-            {
-                prompts.push(
-                    {
-                        type: 'input',
-                        name: 'projectGitUrl',
-                        message: 'please enter app Git Url'
-                    }
-                    )
-            }
-            return [...prompts,
+                },
+                {
+                    type: 'input',
+                    name: 'projectGitUrl',
+                    message: 'please enter app Git Url'
+                },
                 {
                     type: 'input',
                     name: 'projectLicense',
@@ -50,9 +42,7 @@ module.exports = function (plop) {
                     name: 'projectDefaultPort',
                     message: 'please enter app default server port'
                 }
-            ]
-
-        },
+        ],
         actions: data => {
                 const actions = [
                     {
