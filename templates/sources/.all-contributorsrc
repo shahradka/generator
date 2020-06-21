@@ -1,0 +1,16 @@
+{
+  "projectName": "{{projectName}}",
+  "projectOwner": "{{projectName}}",
+  "repoType": "",
+  "repoHost": "",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 80,
+  "commit": true,
+  "contributors": [
+    {
+
+    },
+  ],
+}
