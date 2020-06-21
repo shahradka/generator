@@ -56,22 +56,22 @@ module.exports = function (plop) {
                 const actions = [
                     {
                         type: 'add',
-                        path: path.join(processDir,`app/index.html`),
+                        path: path.join(processDir,data.projectName,`app/index.html`),
                         templateFile: 'templates/index.html.hbs'
                     },
                     {
                         type: 'add',
-                        path: path.join(processDir,`server/port.js`),
+                        path: path.join(processDir,data.projectName,`server/port.js`),
                         templateFile: 'templates/port.js.hbs'
                     },
                     {
                         type: 'add',
-                        path: path.join(processDir,`package.json`),
+                        path: path.join(processDir,data.projectName,`package.json`),
                         templateFile: 'templates/package.json.hbs'
                     },
                     {
                         type: 'addMany',
-                        destination: processDir,
+                        destination: path.join(processDir,data.projectName),
                         base:'templates/sources',
                         globOptions:{
                             dot:true
