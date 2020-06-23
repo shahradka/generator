@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = function (plop) {
     // react seam app generator
     const processDir = process.cwd();
-    plop.setGenerator('createapp', {
+    plop.setGenerator('CreateApp', {
         description: 'create app generator',
         prompts:
             [
