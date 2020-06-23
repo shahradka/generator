@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = function (plop) {
     // react seam app generator
     const processDir = process.cwd();
+    console.log("processDir",processDir);
     plop.setGenerator('CreateApp', {
         description: 'create app generator',
         prompts:
@@ -57,26 +58,25 @@ module.exports = function (plop) {
                     {
                         type: 'add',
                         path: path.join(processDir,data.projectName,`app/index.html`),
-                        templateFile: 'templates/index.html.hbs'
+                        templateFile: '../templates/index.html.hbs'
                     },
                     {
                         type: 'add',
                         path: path.join(processDir,data.projectName,`server/port.js`),
-                        templateFile: 'templates/port.js.hbs'
+                        templateFile: '../templates/port.js.hbs'
                     },
                     {
                         type: 'add',
                         path: path.join(processDir,data.projectName,`package.json`),
-                        templateFile: 'templates/package.json.hbs'
+                        templateFile: '../templates/package.json.hbs'
                     },
                     {
                         type: 'addMany',
                         destination: path.join(processDir,data.projectName),
-                        base:'templates/sources',
                         globOptions:{
                             dot:true
                         },
-                        templateFiles: 'templates/sources/**'
+                        templateFiles: '../templates/sources/**'
                     },
                 ]
                 return actions;
