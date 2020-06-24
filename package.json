@@ -1,6 +1,6 @@
 {
   "name": "@ReactSeam/app-generator",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "description": "",
   "scripts": {
     "plop": "plop"
@@ -15,6 +15,8 @@
   "author": "kashani.sh",
   "license": "MIT",
   "dependencies": {
+    "cfonts": "^2.8.5",
+    "console.style": "^0.2.2",
     "plop": "^2.7.1"
   }
 }
