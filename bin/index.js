@@ -19,7 +19,7 @@ CFonts.say('React-Seam |--------------', {
     transitionGradient: false,  // define if this is a transition between colors directly
     env: 'node'                 // define the environment CFonts is being executed in
 });
-CFonts.say('[ App Generator ]', {
+CFonts.say('App Generator', {
     font: 'simple',              // define the font face
     align: 'left',              // define text alignment
     colors: ['system'],         // define all colors
