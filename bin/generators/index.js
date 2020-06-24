@@ -3,7 +3,6 @@ const path = require("path");
 module.exports = function (plop) {
     // react seam app generator
     const processDir = process.cwd();
-    console.log("processDir",processDir);
     plop.setGenerator('CreateApp', {
         description: 'create app generator',
         prompts:
@@ -11,46 +10,46 @@ module.exports = function (plop) {
                 {
                     type: 'input',
                     name: 'projectName',
-                    message: 'Please enter app name'
+                    message: 'Please Enter App Name'
                 },
                 {
-                    type: 'input',
-                    name: 'projectHtmlTitle',
-                    message: 'Please enter app html title'
-                },
-                {
-                    type: 'input',
+                    type: 'editor',
                     name: 'projectDescribtion',
                     message: 'Please enter app describtions'
                 },
                 {
                     type: 'confirm',
                     name: 'wantGitRepo',
-                    message: 'Do you want to create git repository?',
+                    message: 'Do You Want Intiate Git Repository?',
                     default:false
                 },
                 {
                     type: 'input',
                     name: 'gitRepoUrl',
-                    message: 'Please enter git repository url:',
+                    message: 'Please Enter Git Repository Url:',
                     when:(ans)=>{
                         return ans.wantGitRepo;
                     }
                 },
                 {
-                    type: 'input',
-                    name: 'projectGitUrl',
-                    message: 'please enter app Git Url'
+                    type: 'list',
+                    name: 'projectLicense',
+                    message: 'Please Select Project License:',
+                    choices: ['MIT', 'ISC', 'Apache', 'GNU', 'OTHER']
                 },
                 {
                     type: 'input',
-                    name: 'projectLicense',
-                    message: 'please enter app license'
+                    name: 'otherProjectLicense',
+                    message: 'Please Enter Project License:',
+                    when:(ans)=>{
+                        return ans.projectLicense;
+                    }
                 },
                 {
                     type: 'input',
                     name: 'projectDefaultPort',
-                    message: 'please enter app default server port'
+                    default:3500,
+                    message: 'Please Enter App Default Server Port'
                 }
         ],
         actions: data => {
@@ -58,21 +57,27 @@ module.exports = function (plop) {
                     {
                         type: 'add',
                         path: path.join(processDir,data.projectName,`app/index.html`),
-                        templateFile: '../templates/index.html.hbs'
+                        templateFile: '../templates/index.html.hbs',
+                        abortOnFail:true
                     },
                     {
                         type: 'add',
                         path: path.join(processDir,data.projectName,`server/port.js`),
-                        templateFile: '../templates/port.js.hbs'
+                        templateFile: '../templates/port.js.hbs',
+                        abortOnFail:true
                     },
                     {
                         type: 'add',
                         path: path.join(processDir,data.projectName,`package.json`),
-                        templateFile: '../templates/package.json.hbs'
+                        templateFile: '../templates/package.json.hbs',
+                        abortOnFail:true
                     },
                     {
                         type: 'addMany',
                         destination: path.join(processDir,data.projectName),
+                        base: '../templates/sources/',
+                        stripExtensions:['notHbs'],
+                        abortOnFail:true,
                         globOptions:{
                             dot:true
                         },

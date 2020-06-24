@@ -16,7 +16,7 @@
   {{#if projectLicense}}
     "license": "{{projectLicense}}",
   {{else}}
-    "license": "MIT",
+    "license": "{{otherProjectLicense}}",
   {{/if}}
   "scripts": {
     "analyze:clean": "rimraf stats.json",

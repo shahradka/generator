@@ -3,7 +3,7 @@
   "version": "1.2.2",
   "description": "",
   "scripts": {
-    "plop":"plop"
+    "plop": "plop"
   },
   "bin": {
     "app-generator": "bin/index.js"
